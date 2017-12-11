@@ -1,0 +1,31 @@
+{
+  "name": "matching-engine",
+  "version": "1.0.0",
+  "description": "node matching engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitniex/matching-enging.git"
+  },
+  "keywords": [
+    "node",
+    "matching"
+  ],
+  "author": "Jackie Meng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bitniex/matching-enging/issues"
+  },
+  "homepage": "https://github.com/bitniex/matching-enging#readme",
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "eslint-config-egg": "^5.1.1",
+    "webstorm-disable-index": "^1.2.0"
+  },
+  "dependencies": {
+    "bintrees": "^1.0.2"
+  }
+}
