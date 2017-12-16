@@ -1,5 +1,10 @@
 'use strict';
 const { ORDER_TYPE, ORDER_SIDE } = require('./constants');
+const {
+  BalanceNotEnough,
+  ExceedSumLimit,
+  OrderTypeNotSupported
+} = require('./exceptions');
 
 class OrderManager {
   static trade(order, tradeOrder, tradeBook) {
@@ -9,20 +14,20 @@ class OrderManager {
       case ORDER_TYPE.MARKET:
         return marketTrade(order, tradeOrder, tradeBook);
       default:
-        throwNotSupportedOrderType();
+        throw new OrderTypeNotSupported();
     }
   }
 
   static fill(order, { volume, cost }) {
     if (volume > order.volume) {
-      throw new Error('Balance Not Enough');
+      throw new BalanceNotEnough();
     }
     order.volume -= volume;
     // fill market order
     if (order.type === ORDER_TYPE.MARKET) {
       const _cost = order.side === ORDER_SIDE.ASK ? volume : cost;
       if (_cost > order.locked) {
-        throw new Error('Exceed SumLimit');
+        throw new ExceedSumLimit();
       }
       order.locked -= _cost;
     }
@@ -55,7 +60,7 @@ function limitTrade(order, tradeOrder) {
       );
       break;
     default:
-      throwNotSupportedOrderType();
+      throw new OrderTypeNotSupported();
   }
   const cost = price * volume;
   return { price, volume, cost };
@@ -95,10 +100,6 @@ function volumeLimitOfMarketOrder(order, price) {
   return order.type === ORDER_TYPE.ASK
     ? order.locked
     : (order.locked / price);
-}
-
-function throwNotSupportedOrderType() {
-  throw new Error('not supported order type');
 }
 
 module.exports = OrderManager;
