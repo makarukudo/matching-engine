@@ -1,8 +1,8 @@
 /* eslint-disable semi */
 'use strict';
 const { EventEmitter } = require('events');
-const OrderTree = require('./order-tree');
-const OrderGroup = require('./order-group');
+const OrderTree = require('./lib/order-tree');
+const OrderGroup = require('./models/order-group');
 const { ORDER_TYPE, ORDER_SIDE } = require('./constants');
 const _M = Symbol('markets');
 const _L = Symbol('limits');

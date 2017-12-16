@@ -6,6 +6,10 @@ class Order {
     this[_A] = attributes;
   }
 
+  get attributes() {
+    return this[_A];
+  }
+
   get price() {
     return this.attributes.price;
   }
@@ -24,10 +28,6 @@ class Order {
 
   get locked() {
     return this.attributes.locked;
-  }
-
-  get attributes() {
-    return this[_A];
   }
 }
 
