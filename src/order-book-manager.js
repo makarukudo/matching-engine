@@ -1,6 +1,6 @@
 'use strict';
 const { ORDER_SIDE } = require('./constants');
-const OrderBook = require('./order-book');
+const OrderBook = require('./models/order-book');
 
 const _A = Symbol('asks');
 const _B = Symbol('bids');
